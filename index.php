@@ -56,7 +56,7 @@ function addItem(item, i){
 	} else {
 		var div = document.createElement('div');
 		div.className = 'item';
-		div.innerHTML = "<div class ='well'><img onload='addlastItem()' width='100%' height='auto' src = '"+item.imgsrc+"'/><br><button onclick='orderItem(\""+item._id+"\")'><b>Buy</b></button><br><u>"+item.name+"</u><br>"+item.description+"<br><b>$"+item.usaDollarPrice + "</b></div>";
+		div.innerHTML = "<div class ='well'><img onload='alert(i)' width='100%' height='auto' src = '"+item.imgsrc+"'/><br><button onclick='orderItem(\""+item._id+"\")'><b>Buy</b></button><br><u>"+item.name+"</u><br>"+item.description+"<br><b>$"+item.usaDollarPrice + "</b></div>";
 		document.getElementById('boxes').appendChild(div);
 	}
 }
