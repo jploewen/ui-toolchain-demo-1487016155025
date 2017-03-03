@@ -21,6 +21,7 @@ function loadItems(items){
     console.log("Load Items: " + items.rows);
     document.getElementById("loading").innerHTML = "";
     for(i = items.rows.length; i >= 1; i--){
+	console.log(i);
         addItem(items.rows[i].doc, i);
     }
 }
@@ -50,6 +51,7 @@ function showErrorMessage(message) {
 }
 
 function addItem(item, i){
+	console.log('inside add item');
 	if(i > 1) {
 		var div = document.createElement('div');
 		div.className = 'item';
@@ -99,7 +101,7 @@ function orderItem(itemID){
 </script>
 <html>
 <head>
-	<title>Microservices Sample1</title>
+	<title>Microservices Sample</title>
 	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 	<link rel="stylesheet" href="style.css">
 </head>
