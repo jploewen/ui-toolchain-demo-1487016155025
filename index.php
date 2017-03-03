@@ -23,6 +23,8 @@ function loadItems(items){
     for(i = 0; i < items.rows.length; ++i){
         addItem(items.rows[i].doc);
     }
+	addlastItem();
+	
 }
 
 function reloadCatalog() {
@@ -54,6 +56,12 @@ function addItem(item){
 	div.className = 'item';
 	div.innerHTML = "<div class ='well'><img width='100%' height='auto' src = '"+item.imgsrc+"'/><br><button onclick='orderItem(\""+item._id+"\")'><b>Buy</b></button><br><u>"+item.name+"</u><br>"+item.description+"<br><b>$"+item.usaDollarPrice + "</b></div>";
 	document.getElementById('boxes').appendChild(div);
+}
+
+function addlastItem(){
+	var div = document.createElement('div');
+	div.className = 'item';
+	div.innerHTML = "<div class ='well' id='last'><a href="./autoLoadTest.html">Catalog Load Tester</a></div>;
 }
 
 function orderItem(itemID){
@@ -99,7 +107,8 @@ function orderItem(itemID){
 		<div id='boxes' class="notes"></div>
 	</div>
 	<div id="loading"><br>Loading...</div>
-	<a href="./autoLoadTest.html">Catalog Load Tester</a>
+	
+	<!--<a href="./autoLoadTest.html">Catalog Load Tester</a>-->
 </body>
 </html>
 
