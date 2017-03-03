@@ -20,7 +20,7 @@ function loadItems(items){
     var i = 0;
     console.log("Load Items: " + items.rows);
     document.getElementById("loading").innerHTML = "";
-    for(i = items.rows.length; i < 1; i--){
+    for(i = items.rows.length; i >= 1; i--){
         addItem(items.rows[i].doc, i);
     }
 }
@@ -99,7 +99,7 @@ function orderItem(itemID){
 </script>
 <html>
 <head>
-	<title>Microservices Sample</title>
+	<title>Microservices Sample1</title>
 	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 	<link rel="stylesheet" href="style.css">
 </head>
