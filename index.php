@@ -16,8 +16,10 @@ function loadItems(items){
     }
     console.log("Load Items: " + items.rows);
     document.getElementById("loading").innerHTML = "";
+    console.log('loaditems');
     for(var i = items.rows.length; i > 1; --i){
-        addItem(i, items.rows[i].doc);
+	console.log('loop');
+        addItem(items.rows[i].doc, i);
     }
 }
 function reloadCatalog() {
