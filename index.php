@@ -18,7 +18,7 @@ function loadItems(items){
     console.log("Load Items: " + items.rows);
     document.getElementById("loading").innerHTML = "";
     for(i = 0; i < items.rows.length; ++i){
-        addItem(items.rows[i].doc);
+        addItem(items.rows[i].doc, i);
     }
 }
 function reloadCatalog() {
@@ -43,10 +43,10 @@ function reloadCatalog() {
 function showErrorMessage(message) {
     document.getElementById("loading").innerHTML = message;
 }
-function addItem(item){
+function addItem(item, i){
 	var div = document.createElement('div');
 	div.className = 'item';
-	div.innerHTML = "<div class ='well'><img width='100%' height='auto' src = '"+item.imgsrc+"'/><br><button onclick='orderItem(\""+item._id+"\")'><b>Buy</b></button><br><u>"+item.name+"</u><br>"+item.description+"<br><b>$"+item.usaDollarPrice + "</b></div>";
+	div.innerHTML = "<div class ='well'><img onload='alert(i)' width='100%' height='auto' src = '"+item.imgsrc+"'/><br><button onclick='orderItem(\""+item._id+"\")'><b>Buy</b></button><br><u>"+item.name+"</u><br>"+item.description+"<br><b>$"+item.usaDollarPrice + "</b></div>";
 	document.getElementById('boxes').appendChild(div);
 }
 function orderItem(itemID){
