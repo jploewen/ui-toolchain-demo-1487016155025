@@ -17,7 +17,7 @@ function loadItems(items){
     console.log("Load Items: " + items.rows);
     document.getElementById("loading").innerHTML = "";
     for(var i = items.rows.length; i > 1; --i){
-        addItem(items.rows[i].doc, i);
+        addItem(i, items.rows[i].doc);
     }
 }
 function reloadCatalog() {
@@ -43,7 +43,7 @@ function showErrorMessage(message) {
     document.getElementById("loading").innerHTML = message;
 }
 
-function addItem(item, i){
+function addItem(i, item){
 	if(i > 1) {
 		var div = document.createElement('div');
 		div.className = 'item';
