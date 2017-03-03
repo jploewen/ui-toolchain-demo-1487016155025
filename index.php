@@ -1,17 +1,14 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
 
 <?php
-
 include 'getItems.php';
 $result = RetrieveItems();
-
 ?>
 
 <script>
 var RETRY_INTERVAL = 5000;
 var customerId = Math.floor((Math.random() * 999) + 1);
 var items = <?php echo $result?>;
-
 function loadItems(items){
     if (items.error !== undefined) {
         reloadCatalog();
@@ -20,12 +17,10 @@ function loadItems(items){
     var i = 0;
     console.log("Load Items: " + items.rows);
     document.getElementById("loading").innerHTML = "";
-    for(i = items.rows.length; i >= 1; i--){
-	console.log(i);
-        addItem(items.rows[i].doc, i);
+    for(i = 0; i < items.rows.length; ++i){
+        addItem(items.rows[i].doc);
     }
 }
-
 function reloadCatalog() {
     showErrorMessage("The catalog is not currently available, retrying...");
     window.setTimeout(
@@ -45,33 +40,15 @@ function reloadCatalog() {
         RETRY_INTERVAL
     );
 }
-
 function showErrorMessage(message) {
     document.getElementById("loading").innerHTML = message;
 }
-
-function addItem(item, i){
-	console.log('inside add item');
-	if(i > 1) {
-		var div = document.createElement('div');
-		div.className = 'item';
-		div.innerHTML = "<div class ='well'><img width='100%' height='auto' src = '"+item.imgsrc+"'/><br><button onclick='orderItem(\""+item._id+"\")'><b>Buy</b></button><br><u>"+item.name+"</u><br>"+item.description+"<br><b>$"+item.usaDollarPrice + "</b></div>";
-		document.getElementById('boxes').appendChild(div);
-	} else {
-		var div = document.createElement('div');
-		div.className = 'item';
-		div.innerHTML = "<div class ='well'><img style='test' width='100%' height='auto' src = '"+item.imgsrc+"'/><br><button onclick='orderItem(\""+item._id+"\")'><b>Buy</b></button><br><u>"+item.name+"</u><br>"+item.description+"<br><b>$"+item.usaDollarPrice + "</b></div>";
-		document.getElementById('boxes').appendChild(div);
-	}
-}
-
-function addlastItem(){
+function addItem(item){
 	var div = document.createElement('div');
 	div.className = 'item';
-	div.innerHTML = '<div class ="well" id="last"><a href="./autoLoadTest.html">Catalog Load Tester</a></div>';
+	div.innerHTML = "<div class ='well'><img width='100%' height='auto' src = '"+item.imgsrc+"'/><br><button onclick='orderItem(\""+item._id+"\")'><b>Buy</b></button><br><u>"+item.name+"</u><br>"+item.description+"<br><b>$"+item.usaDollarPrice + "</b></div>";
 	document.getElementById('boxes').appendChild(div);
 }
-
 function orderItem(itemID){
     var count = Math.floor((Math.random() * 99) + 1);
     var myjson = {"itemid": itemID, "customerid": customerId, "count": count};
@@ -95,9 +72,7 @@ function orderItem(itemID){
         	console.log("Status: " , textStatus); console.log("Error: " , errorThrown); 
     }  
 	});
-
 }
-
 </script>
 <html>
 <head>
@@ -115,7 +90,6 @@ function orderItem(itemID){
 		<div id='boxes' class="notes"></div>
 	</div>
 	<div id="loading"><br>Loading...</div>
-	<!--<a href="./autoLoadTest.html">Catalog Load Tester</a>-->
+	<a href="./autoLoadTest.html">Catalog Load Tester</a>
 </body>
 </html>
-
