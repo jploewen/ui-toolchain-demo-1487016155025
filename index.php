@@ -14,10 +14,9 @@ function loadItems(items){
         reloadCatalog();
         return;
     }
-    var i = 0;
     console.log("Load Items: " + items.rows);
     document.getElementById("loading").innerHTML = "";
-    for(i = items.rows.length; i > 1; i--){
+    for(var i = items.rows.length; i > 1; i--){
         addItem(items.rows[i].doc, i);
     }
 }
