@@ -17,7 +17,7 @@ function loadItems(items){
     var i = 0;
     console.log("Load Items: " + items.rows);
     document.getElementById("loading").innerHTML = "";
-    for(i = 0; i < items.rows.length; ++i){
+    for(i = items.rows.length; i >= 0; i--){
 	
         addItem(items.rows[i].doc, i);
     }
@@ -44,14 +44,25 @@ function reloadCatalog() {
 function showErrorMessage(message) {
     document.getElementById("loading").innerHTML = message;
 }
+
 function addItem(item, i){
+	if(i > 1) {
+		var div = document.createElement('div');
+		div.className = 'item';
+		div.innerHTML = "<div class ='well'><img width='100%' height='auto' src = '"+item.imgsrc+"'/><br><button onclick='orderItem(\""+item._id+"\")'><b>Buy</b></button><br><u>"+item.name+"</u><br>"+item.description+"<br><b>$"+item.usaDollarPrice + "</b></div>";
+		document.getElementById('boxes').appendChild(div);
+	} else {
+		var div = document.createElement('div');
+		div.className = 'item';
+		div.innerHTML = "<div class ='well'><img onload='addlastitem()' width='100%' height='auto' src = '"+item.imgsrc+"'/><br><button onclick='orderItem(\""+item._id+"\")'><b>Buy</b></button><br><u>"+item.name+"</u><br>"+item.description+"<br><b>$"+item.usaDollarPrice + "</b></div>";
+		document.getElementById('boxes').appendChild(div);
+	}
+}
+function addlastItem(){
 	var div = document.createElement('div');
 	div.className = 'item';
-	div.innerHTML = "<div class ='well'><img onload='postLoad()' width='100%' height='auto' src = '"+item.imgsrc+"'/><br><button onclick='orderItem(\""+item._id+"\")'><b>Buy</b></button><br><u>"+item.name+"</u><br>"+item.description+"<br><b>$"+item.usaDollarPrice + "</b></div>";
+	div.innerHTML = '<div class ="well" id="last"><a href="./autoLoadTest.html">Catalog Load Tester</a></div>';
 	document.getElementById('boxes').appendChild(div);
-}
-function postLoad(){
-	console.log('here');	
 }
 function orderItem(itemID){
     var count = Math.floor((Math.random() * 99) + 1);
