@@ -61,7 +61,7 @@ function addItem(item){
 function addlastItem(){
 	var div = document.createElement('div');
 	div.className = 'item';
-	div.innerHTML = "<div class ='well' id='last'><a href="./autoLoadTest.html">Catalog Load Tester</a></div>;
+	div.innerHTML = '<div class ="well" id="last"><a href="./autoLoadTest.html">Catalog Load Tester</a></div>';
 }
 
 function orderItem(itemID){
