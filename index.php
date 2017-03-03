@@ -17,7 +17,7 @@ function loadItems(items){
     var i = 0;
     console.log("Load Items: " + items.rows);
     document.getElementById("loading").innerHTML = "";
-    for(i = items.rows.length; i >= 0; i--){
+    for(i = items.rows.length; i > 0; i--){
 	
         addItem(items.rows[i].doc, i);
     }
