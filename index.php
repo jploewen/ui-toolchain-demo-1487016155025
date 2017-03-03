@@ -62,6 +62,7 @@ function addlastItem(){
 	var div = document.createElement('div');
 	div.className = 'item';
 	div.innerHTML = '<div class ="well" id="last"><a href="./autoLoadTest.html">Catalog Load Tester</a></div>';
+	document.getElementById('boxes').appendChild(div);
 }
 
 function orderItem(itemID){
