@@ -20,11 +20,9 @@ function loadItems(items){
     var i = 0;
     console.log("Load Items: " + items.rows);
     document.getElementById("loading").innerHTML = "";
-    for(i = 0; i < items.rows.length; ++i){
-        addItem(items.rows[i].doc);
+    for(i = items.rows.length; i < 1; i--){
+        addItem(items.rows[i].doc, i);
     }
-	addlastItem();
-	
 }
 
 function reloadCatalog() {
@@ -51,11 +49,18 @@ function showErrorMessage(message) {
     document.getElementById("loading").innerHTML = message;
 }
 
-function addItem(item){
-	var div = document.createElement('div');
-	div.className = 'item';
-	div.innerHTML = "<div class ='well'><img width='100%' height='auto' src = '"+item.imgsrc+"'/><br><button onclick='orderItem(\""+item._id+"\")'><b>Buy</b></button><br><u>"+item.name+"</u><br>"+item.description+"<br><b>$"+item.usaDollarPrice + "</b></div>";
-	document.getElementById('boxes').appendChild(div);
+function addItem(item, i){
+	if(i > 1) {
+		var div = document.createElement('div');
+		div.className = 'item';
+		div.innerHTML = "<div class ='well'><img width='100%' height='auto' src = '"+item.imgsrc+"'/><br><button onclick='orderItem(\""+item._id+"\")'><b>Buy</b></button><br><u>"+item.name+"</u><br>"+item.description+"<br><b>$"+item.usaDollarPrice + "</b></div>";
+		document.getElementById('boxes').appendChild(div);
+	} else {
+		var div = document.createElement('div');
+		div.className = 'item';
+		div.innerHTML = "<div class ='well'><img onload='addlastItem()' width='100%' height='auto' src = '"+item.imgsrc+"'/><br><button onclick='orderItem(\""+item._id+"\")'><b>Buy</b></button><br><u>"+item.name+"</u><br>"+item.description+"<br><b>$"+item.usaDollarPrice + "</b></div>";
+		document.getElementById('boxes').appendChild(div);
+	}
 }
 
 function addlastItem(){
@@ -108,8 +113,6 @@ function orderItem(itemID){
 		<div id='boxes' class="notes"></div>
 	</div>
 	<div id="loading"><br>Loading...</div>
-	
-	<!--<a href="./autoLoadTest.html">Catalog Load Tester</a>-->
 </body>
 </html>
 
