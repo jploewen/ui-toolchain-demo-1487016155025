@@ -45,7 +45,7 @@ function showErrorMessage(message) {
     document.getElementById("loading").innerHTML = message;
 }
 
-function addItem(i, item){
+function addItem(item.i){
 	if(i > 1) {
 		var div = document.createElement('div');
 		div.className = 'item';
